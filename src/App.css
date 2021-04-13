@@ -1,0 +1,249 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap");
+
+@import "./animation.css";
+@import "./lightMode.css";
+@import "./mediaQueries.css";
+
+:root {
+  --dark-blue: hsl(209, 23%, 22%);
+  --very-dark-blue: hsl(207, 26%, 17%);
+  --very-dark-blue-text-light: hsl(200, 15%, 8%);
+  --dark-gray: hsl(0, 0%, 52%);
+  --very-light-gray: hsl(0, 0%, 98%);
+  --white: hsl(0, 0%, 100%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.App {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 0.875rem;
+  background-color: var(--very-dark-blue);
+  min-height: 100vh;
+  color: var(--white);
+}
+
+.nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 2.375rem 1.125rem;
+  background-color: var(--dark-blue);
+  margin-bottom: 1.875rem;
+}
+.nav > button {
+  color: var(--white);
+  background-color: transparent;
+  outline: none;
+  border: 1px solid transparent;
+  font-weight: 600;
+  position: relative;
+}
+.nav > button::before {
+  content: "";
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.274);
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  left: -1rem;
+  top: -1rem;
+  border-radius: 0.4rem;
+  opacity: 0;
+  transition: all 100ms ease-out;
+}
+.nav > button:active::before {
+  transition: all 100ms ease-out;
+  opacity: 1;
+}
+button > i {
+  margin-right: 0.5rem;
+}
+.container {
+  padding: 0 1.25rem;
+}
+.searcher {
+  background-color: var(--dark-blue);
+  padding: 1.25rem 2.275rem;
+  border-radius: 0.45rem;
+  color: var(--white);
+  margin-bottom: 2.5rem;
+}
+.searcher--input > input {
+  background-color: transparent;
+  border: 1px solid transparent;
+  margin-left: 1.875rem;
+  outline: none;
+  color: var(--white);
+  width: 75%;
+}
+
+.searcher--input > input::placeholder {
+  color: var(--white);
+}
+
+/* Select styles */
+
+.select--region,
+.regions {
+  width: 60%;
+  padding: 1.25rem 1.2375rem;
+  background-color: var(--dark-blue);
+  border-radius: 0.45rem;
+  margin-bottom: 0.5rem;
+}
+
+.select--region > button {
+  cursor: pointer;
+}
+.select--region button > i {
+  transition: all 200ms ease-out;
+}
+
+.select--region.active button > i {
+  transform: rotate(180deg);
+  transition: all 200ms ease-out;
+}
+
+.select--region button,
+.regions button {
+  color: var(--white);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: transparent;
+  outline: none;
+  border: 1px solid transparent;
+}
+.regions {
+  width: 60%;
+  border-radius: 0.45rem;
+  position: absolute;
+  z-index: 99999999;
+  opacity: 0;
+  transition: all 200ms ease-out;
+  height: 0;
+  pointer-events: none;
+}
+
+.regions.active {
+  animation: fade 200ms ease-out forwards;
+  pointer-events: visible;
+}
+
+.regions > button {
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+/* Results styles */
+.results {
+  margin-top: 1.5rem;
+}
+
+.results .card-country {
+  background: var(--dark-blue);
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
+  border-radius: 0.43rem;
+  margin-top: 2rem;
+  text-decoration: none;
+}
+
+figure > img {
+  height: 11.375rem;
+  width: 100%;
+  border-radius: 0.4rem 0.4rem 0 0;
+  object-fit: cover;
+}
+.results .info {
+  color: var(--white);
+  padding: 1.875rem 1.5625rem;
+  font-size: 1rem;
+}
+.info > h3 {
+  margin-bottom: 1.375rem;
+}
+.info > p {
+  line-height: 1.5;
+  text-decoration: none;
+}
+.info p span {
+  font-weight: 600;
+}
+
+/* country styles */
+
+.country {
+  padding: 0 2.3rem;
+  color: var(--white);
+}
+.btn-back {
+  padding: 0.7rem 2.3rem;
+  background-color: var(--dark-blue);
+  color: var(--white);
+  outline: none;
+  border: 1px solid transparent;
+  border-radius: 0.3rem;
+  box-shadow: 0 0 13px rgba(37, 37, 37, 0.555);
+  margin-bottom: 2.5rem;
+}
+.img-container {
+  margin-bottom: 2rem;
+}
+
+.img-container > img {
+  width: 100%;
+  height: 12rem;
+  object-fit: cover;
+}
+.country-details {
+  font-size: 1rem;
+  margin-top: 1rem;
+  line-height: 1.7;
+}
+.country-details > h3 {
+  margin-bottom: 1rem;
+}
+.country-details p > span {
+  font-weight: 400;
+  color: var(--white);
+}
+.country-details > p {
+  color: var(--dark-gray);
+  font-weight: 600;
+}
+
+.border-countries {
+  margin: 1.5rem 0;
+}
+
+.border-countries > h3 {
+  margin-bottom: 1rem;
+  font-weight: 300;
+}
+
+.button-group {
+  display: grid;
+  grid-template-columns: repeat(3, 6.3rem);
+  grid-gap: 0.3rem;
+}
+
+.button-group > a {
+  text-align: center;
+  text-decoration: none;
+  color: var(--dark-gray);
+  border: 1px solid transparent;
+  padding: 0.6rem 1rem;
+  background-color: var(--dark-blue);
+  border-radius: 0.14rem;
+  box-shadow: 0 0 13px rgba(37, 37, 37, 0.555);
+  outline: none;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}

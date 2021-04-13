@@ -1,0 +1,64 @@
+.App.light {
+  background-color: var(--very-light-gray);
+  color: var(--very-dark-blue-text-light);
+}
+.light .nav {
+  background-color: var(--white);
+  box-shadow: 0 0 9px rgba(180, 180, 180, 0.363);
+}
+.light .nav > button {
+  color: var(--very-dark-blue-text-light);
+}
+.light .searcher {
+  background-color: var(--white);
+  box-shadow: 0 0 7px rgba(196, 196, 196, 0.377);
+  color: var(--very-dark-blue-text-light);
+}
+.light .searcher--input > input {
+  color: var(--very-dark-blue-text-light);
+}
+.light .searcher--input > input::placeholder {
+  color: var(--very-dark-blue-text-light);
+}
+.light .select--region,
+.light .regions {
+  background-color: var(--white);
+}
+
+.light .select--region button,
+.light .regions button {
+  color: var(--very-dark-blue);
+}
+
+.light .results .card-country {
+  background-color: var(--white);
+}
+.light .info {
+  box-shadow: 0 0 9px rgba(204, 204, 204, 0.219);
+}
+.light .info p,
+.light .info h3 {
+  color: var(--very-dark-blue);
+}
+
+/* Country styles ligh */
+.light .btn-back {
+  background-color: var(--white);
+  box-shadow: 0 0 9px rgba(204, 204, 204, 0.623);
+  color: var(--very-dark-blue);
+}
+.light .country-details h3,
+.light .country-details p > span {
+  color: var(--very-dark-blue);
+  font-weight: bold;
+}
+
+.light .border-countries h3 {
+  color: var(--very-dark-blue);
+  font-weight: bold;
+}
+.light .button-group a {
+  background-color: var(--white);
+  box-shadow: 0 0 9px rgba(204, 204, 204, 0.267);
+  color: var(--very-dark-blue);
+}
