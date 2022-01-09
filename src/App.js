@@ -17,8 +17,8 @@ function App() {
       <Navbar darkmode={darkMode} changeTheme={changeTheme} />
       <Router>
         <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/country" exact component={Country} />
+          <Route path='/' exact component={Home} />
+          <Route path='/country' exact component={Country} />
         </Switch>
       </Router>
     </div>

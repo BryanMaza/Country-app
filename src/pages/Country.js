@@ -6,19 +6,21 @@ export default function Country({ location }) {
   const history = useHistory();
   const country = location.state;
   const [countriesBorders, setCountriesBorders] = useState([]);
-
+  console.log(country);
   useEffect(() => {
     setCountriesBorders([]);
     (async () => {
-      for (let item of country.borders) {
-        const data = await getName(item);
-        setCountriesBorders((countries) => [...countries, data]);
+      if (country.borders) {
+        for (let item of country.borders) {
+          const data = await asyncGetName(item);
+          setCountriesBorders((countries) => [...countries, data]);
+        }
       }
     })();
   }, [country.borders]);
 
-  const getName = async (code) => {
-    const data = await fetch(`https://restcountries.eu/rest/v2/alpha/${code}`);
+  const asyncGetName = async (code) => {
+    const data = await fetch(`https://restcountries.com/v2/alpha/${code}`);
     const res = await data.json();
     return res;
   };
@@ -30,15 +32,25 @@ export default function Country({ location }) {
       </button>
       <div className='country-info'>
         <div className='img-container'>
-          <img src={country.flag} alt='flag country' />
+          {country.flag ? (
+            <img
+              src={country.flag.length > 3 ? country.flags.png : country.flag}
+              alt='img'
+            />
+          ) : (
+            <img src='/default.jpg' alt='default' />
+          )}
         </div>
 
         <div className='country-details-info'>
           <section>
             <div className='country-details'>
-              <h3>{country.name}</h3>
+              <h3>
+                {country.name.common ? country.name.common : country.name}
+              </h3>
               <p>
-                <span>Native Name</span>: {country.nativeName}
+                <span>Native Name</span>:
+                {country.nativeName ? country.nativeName : "-"}
               </p>
               <p>
                 <span>Population</span>: {country.population.toLocaleString()}
@@ -55,25 +67,35 @@ export default function Country({ location }) {
             </div>
             <div className='country-details'>
               <p>
-                <span>Top Level Domain</span>: {country.topLevelDomain[0]}
+                <span>Top Level Domain</span>:
+                {country.topLevelDomain ? country.topLevelDomain[0] : "-"}
               </p>
               <p>
-                <span>Currencies</span>: {country.currencies[0].name}
+                <span>Currencies</span>:
+                {country.currencies[0]
+                  ? country.currencies[0].name
+                  : Object.values(country.currencies)[0].name}
               </p>
               <p>
-                <span>Languages</span>:{" "}
-                {country.languages.map((lan) => lan.name)}
+                <span>Languages</span>:
+                {Array.isArray(country.languages)
+                  ? country.languages.map((item) => item.name).join(", ")
+                  : Object.values(country.languages)
+                      .map((item) => item)
+                      .join(", ")}
               </p>
             </div>
           </section>
           <div className='border-countries'>
             <h3>Border Countries:</h3>
             <div className='button-group'>
-              {countriesBorders.map((country, i) => (
-                <Link to={{ pathname: "/country", state: country }} key={i}>
-                  {country.name.split(" ")[0]}
-                </Link>
-              ))}
+              {countriesBorders.length > 0
+                ? countriesBorders.map((country, i) => (
+                    <Link to={{ pathname: "/country", state: country }} key={i}>
+                      {country.name.split(" ")[0]}
+                    </Link>
+                  ))
+                : "No borders"}
             </div>
           </div>
         </div>

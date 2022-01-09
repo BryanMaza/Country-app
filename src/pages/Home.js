@@ -10,20 +10,17 @@ function Home() {
   useEffect(() => {
     const getAllCountries = async () => {
       setLoading(true);
-      const data = await fetch(`https://restcountries.eu/rest/v2/all`);
+      const data = await fetch(`https://restcountries.com/v2/all`);
       const res = await data.json();
       setCountries(res);
       setLoading(false);
     };
-
     getAllCountries();
   }, []);
 
   const searchCountry = async (country) => {
     setLoading(true);
-    const data = await fetch(
-      `https://restcountries.eu/rest/v2/name/${country}`
-    );
+    const data = await fetch(`https://restcountries.com/v2/name/${country}`);
     const res = await data.json();
     setCountries(res);
     setLoading(false);
@@ -31,9 +28,7 @@ function Home() {
 
   const getCountriesRegion = async (region) => {
     setLoading(true);
-    const data = await fetch(
-      `https://restcountries.eu/rest/v2/region/${region}`
-    );
+    const data = await fetch(`https://restcountries.com/v3.1/region/${region}`);
     const res = await data.json();
     setCountries(res);
     setLoading(false);
